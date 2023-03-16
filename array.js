@@ -42,6 +42,6 @@ myarray.push("three");
 myarray.push("four");
 myarray.push("five");
 myarray.push("six");
-// myarray.pop();
+myarray.pop();
 myarray.delete(2);
 console.log(myarray);
