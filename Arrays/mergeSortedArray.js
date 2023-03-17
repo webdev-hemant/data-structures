@@ -11,7 +11,7 @@ const mergeSortedArray = (array1 = [], array2 = []) => {
   if (array2.length === 0) {
     return array1;
   }
-  let num = 0;
+  //   let num = 0;
   while (array1Item || array2Item) {
     if (!array2Item || array1Item < array2Item) {
       mergedArray.push(array1Item);
@@ -22,9 +22,9 @@ const mergeSortedArray = (array1 = [], array2 = []) => {
       array2Item = array2[j];
       j++;
     }
-    ++num;
+    // ++num;
   }
-  console.log("count", num);
+  //   console.log("count", num);
 
   return mergedArray;
 };
