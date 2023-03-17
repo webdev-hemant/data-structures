@@ -25,6 +25,16 @@ class HashTable {
     return this.data;
   }
 
+  keys() {
+    const keysArray = [];
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i]) {
+        keysArray.push(this.data[i][0][0]);
+      }
+    }
+    return keysArray;
+  }
+
   _hash(key) {
     let hash = 0;
     for (let i = 0; i < key.length; i++) {
@@ -37,5 +47,8 @@ class HashTable {
 const myhashtable = new HashTable(10);
 
 myhashtable.set("hemant", "greatest of all time");
+myhashtable.set("pappu", "greatest of all time");
 
-console.log(myhashtable.get("hemant"));
+// console.log(myhashtable.get("hemant"));
+// myhashtable.keys();
+console.log(myhashtable.keys());
