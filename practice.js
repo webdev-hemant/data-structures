@@ -2,11 +2,10 @@ class NewNode {
   constructor(value) {
     this.value = value;
     this.next = null;
-    this.prev = null;
   }
 }
 
-class DoublyLinkedList {
+class LinkedList {
   constructor(value) {
     this.head = new NewNode(value);
     this.tail = this.head;
@@ -14,14 +13,12 @@ class DoublyLinkedList {
   }
   append(value) {
     const newNode = new NewNode(value);
-    newNode.prev = this.tail;
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
   }
   prepend(value) {
     const newNode = new NewNode(value);
-    this.head.prev = newNode;
     newNode.next = this.head;
     this.head = newNode;
     this.length++;
@@ -33,10 +30,9 @@ class DoublyLinkedList {
     }
     const newNode = new NewNode(value);
     const leader = this.traverseToIndex(index - 1);
-    const follower = leader.next;
+    const holdingPointer = leader.next;
+    newNode.next = holdingPointer;
     leader.next = newNode;
-    newNode.prev = leader;
-    newNode.next = follower;
     this.length++;
     return this.printList();
   }
@@ -44,10 +40,26 @@ class DoublyLinkedList {
   remove(index) {
     const leader = this.traverseToIndex(index - 1);
     const unwantedNode = leader.next;
-    const follower = unwantedNode.next;
-    leader.next = follower;
-    follower.prev = leader;
+    leader.next = unwantedNode.next;
     this.length--;
+    return this.printList();
+  }
+
+  reverse() {
+    if (!this.head.next) {
+      return this.head;
+    }
+    let first = this.head;
+    let second = first.next;
+    this.tail = this.head;
+    while (second) {
+      const temp = second.next;
+      second.next = first;
+      first = second;
+      second = temp;
+    }
+    this.head.next = null;
+    this.head = first;
     return this.printList();
   }
 
@@ -70,20 +82,20 @@ class DoublyLinkedList {
       currentNode = currentNode.next;
     }
     array.push(currentNode.value);
+    console.log(array);
     return array;
   }
 }
 
-const myDoublylinkedlist = new DoublyLinkedList("chetan");
+const mylinkedlist = new LinkedList(1);
 
-// myDoublylinkedlist.append(2);
-// myDoublylinkedlist.append(3);
-// myDoublylinkedlist.append(4);
-// myDoublylinkedlist.append(5);
-myDoublylinkedlist.insert(2, "hemant");
-// myDoublylinkedlist.prepend(0);
-console.log(myDoublylinkedlist);
-// myDoublylinkedlist.printList();
-// console.log(myDoublylinkedlist.remove(2));
-// console.log(myDoublylinkedlist.insert(4, "hemant"));
-// console.log(myDoublylinkedlist.printList(), "size =" + " " + myDoublylinkedlist.length);
+mylinkedlist.append(2);
+mylinkedlist.append(3);
+mylinkedlist.append(4);
+mylinkedlist.append(5);
+mylinkedlist.prepend(0);
+mylinkedlist.printList();
+mylinkedlist.reverse();
+// console.log(mylinkedlist.remove(2));
+// console.log(mylinkedlist.insert(4, "hemant"));
+// console.log(mylinkedlist.printList(), "size =" + " " + mylinkedlist.length);
