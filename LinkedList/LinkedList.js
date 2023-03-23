@@ -45,6 +45,24 @@ class LinkedList {
     return this.printList();
   }
 
+  reverse() {
+    if (!this.head.next) {
+      return this.head;
+    }
+    let first = this.head;
+    let second = first.next;
+    this.tail = this.head;
+    while (second) {
+      const temp = second.next;
+      second.next = first;
+      first = second;
+      second = temp;
+    }
+    this.head.next = null;
+    this.head = first;
+    return this.printList();
+  }
+
   traverseToIndex(index) {
     let counter = 0;
     let currentNode = this.head;
@@ -64,6 +82,7 @@ class LinkedList {
       currentNode = currentNode.next;
     }
     array.push(currentNode.value);
+    console.log(array);
     return array;
   }
 }
@@ -75,7 +94,8 @@ mylinkedlist.append(3);
 mylinkedlist.append(4);
 mylinkedlist.append(5);
 mylinkedlist.prepend(0);
-// mylinkedlist.printList();
-console.log(mylinkedlist.remove(2));
+mylinkedlist.printList();
+mylinkedlist.reverse();
+// console.log(mylinkedlist.remove(2));
 // console.log(mylinkedlist.insert(4, "hemant"));
 // console.log(mylinkedlist.printList(), "size =" + " " + mylinkedlist.length);
