@@ -1,10 +1,3 @@
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-  }
-}
-
 class Stack {
   constructor() {
     this.array = [];
@@ -30,7 +23,3 @@ myStack.push("hi");
 myStack.push("hi");
 myStack.pop();
 console.log(myStack);
-
-//Discord
-//Udemy
-//google
